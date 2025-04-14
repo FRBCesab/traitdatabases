@@ -1,0 +1,113 @@
+metadata:
+  status: complete
+dataset:
+  key: benedetti_2015
+  name: Mediterranean copepods' functional traits
+  description: "Information on the functional traits was gathered for the most commonly-sampled copepod species of the Mediterranean Sea. Our database includes 191 species described by 7 traits encompassing diverse ecological functions: minimal and maximal body length (mm), trophic group (Omnivore/Carnivore/Herbivore/Detritivore), feeding type (Cruise-feeding/Filter-feeding/Ambush-feeding), spawning strategy (Sac-spawner/Free-spawner), diel vertical migration (Non-migrant/Weak-migrant/Strong-migrant) and vertical habitat (prefered depth layer). Using cluster analysis in the functional trait space revealed that Mediterranean copepods can be gathered into groups that have different ecological roles."
+  license: CC-BY-3.0
+  bibtex: benedetti_2015.bib
+  taxon: Copepods
+  taxonomic_level: species
+  type: static
+  url: https://epic.awi.de/id/eprint/38898/1/Copepod_Functional_Traits_Benedettietal_2015_JPR.xlsx
+  filename: Copepod_Functional_Traits_Benedettietal_2015_JPR.xlsx
+  extension: "xlsx"
+  manual_download: no
+  long_format: no
+  na_value: .na
+taxonomy:
+  binomial: Species name
+traits:
+- name: Minimum adult cephalothorax length
+  variable: Minimal length [A1]
+  type: quantitative
+  units: mm
+  category: Body size
+  rename_to: .na              # New name of the trait
+  convert_to: .na             # New unit of the trait
+- name: Maximum adult cephalothorax length
+  variable: Maximal length [A1]
+  type: quantitative
+  units: mm
+  category: Body size
+  rename_to: .na              # New name of the trait
+  convert_to: .na             # New unit of the trait
+- name: Trophic regime
+  variable: Trophic Regime
+  type: categorical
+  levels: 
+  - name: Carnivore
+    description: Carnivore
+  - name: Omnivore-Carnivore
+    description: Omnivore-Carnivore
+  - name: Omnivore
+    description: Omnivore
+  - name: Omnivore-Herbivore
+    description: Omnivore-Herbivore
+  - name: Omnivore-Detritivore
+    description: Omnivore-Detritivore
+  category: Diet
+  rename_to: .na              # New name of the trait
+  convert_to: .na             # New unit of the trait
+- name: Feeding strategy
+  variable: Feeding strategy
+  type: categorical
+  levels: 
+  - name: Active Ambush
+    description: Active ambush feeding
+  - name: Cruise
+    description: Cruise feeding
+  - name: Filter
+    description: Filter feeding
+  - name: Mixed
+    description: Mixed feeding
+  category: Feeding
+  rename_to: .na              # New name of the trait
+  convert_to: .na             # New unit of the trait
+- name: "Diel vertical migration behaviour"
+  variable: "DVM behaviour"
+  type: "categorical"
+  levels:
+  - name: "No"
+    description: Non-migrant
+  - name: "Weak"
+    description: Weak migrant (DVM occurs within tens of metres)
+  - name: "Strong"
+    description: Strong migrant (over several hundreds of metres)
+  - name: "Reverse"
+    description: Reverse migrant (for species that migrate deeper at night)
+  category: Vertical migration
+  rename_to: .na              # New name of the trait
+  convert_to: .na             # New unit of the trait
+- name: "Spawning strategy"
+  variable: "Spawning strategy"
+  type: "categorical"
+  levels: 
+  - name: Broadcaster
+    description: Broadcaster-spawner
+  - name: Sac-spawner
+    description: Sac-spawner
+  category: Egg-spawning strategy
+  rename_to: .na              # New name of the trait
+  convert_to: .na             # New unit of the trait
+- name: "Pelagic layer"
+  variable: "Pelagic layer"
+  type: "categorical"
+  levels: 
+  - name: Epipelagic
+    description: Epipelagic
+  - name: Epibathypelagic
+    description: Epibathypelagic
+  - name: Epimesopelagic
+    description: Epimesopelagic
+  - name: Mesobathypelagic
+    description: Mesobathypelagic
+  - name: Mesopelagic
+    description: Mesopelagic
+  - name: Hyperbenthic
+    description: Hyperbenthic
+  - name: Bathypelagic
+    description: Bathypelagic
+  category: Pelagic layer
+  rename_to: .na              # New name of the trait
+  convert_to: .na             # New unit of the trait
