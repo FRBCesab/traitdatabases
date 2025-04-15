@@ -14,6 +14,7 @@ dataset:
   file_name: Copepod_Functional_Traits_Benedettietal_2015_JPR.xlsx
   file_extension: "xlsx"
   manual_download: no
+  sheet: 1
   long_format: no
   skip_rows: .na
   col_separator: .na

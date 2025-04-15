@@ -112,6 +112,7 @@ metadata_as_yaml <- function() {
       file_name: .filename        # Name of the static file
       file_extension: .ext        # File extension of the static file
       manual_download: no         # One of 'yes' or 'no'
+      sheet: .number              # Sheet number for xslx dataset
       long_format: no             # One of 'yes' or 'no' (traits in columns)
       skip_rows: .na              # Number of header rows to remove
       col_separator: ','          # Character used to separate columns
