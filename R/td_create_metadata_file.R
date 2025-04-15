@@ -96,44 +96,47 @@ td_create_metadata_file <- function(
 metadata_as_yaml <- function() {
   glue::glue(
     "
+    status: draft                 # One of 'draft' or 'complete'
     dataset:
-      key: .dataset_key           # Dataset identifier
-      name: .dataset_name         # Dataset full name
+      id: .dataset_id             # Dataset identifier
+      title: .dataset_title       # Dataset title
       description: .description   # Short description
       license: .license           # Dataset license
-      bibtex: .path               # Dataset citation
+      bibtex: .filename           # Dataset citation
+      doi: .doi                   # DOI of the dataset description (paper)
+      url: .url                   # URL of the dataset description (paper)
       taxon: .taxon               # Taxonomic group (mammals, birds, etc.)
       taxonomic_level: species    # Taxonomic resolution (species, genus, etc.)
       type: static                # One of 'static' or 'api'
-      url: .url                   # URL to download the static file
-      filename: .filename         # Filename of the static file
-      extension: .ext             # File extension of the static file
+      file_url: .url              # Full URL to download the static file
+      file_name: .filename        # Name of the static file
+      file_extension: .ext        # File extension of the static file
       manual_download: no         # One of 'yes' or 'no'
       long_format: no             # One of 'yes' or 'no' (traits in columns)
       skip_rows: .na              # Number of header rows to remove
       col_separator: ','          # Character used to separate columns
       na_value: .na               # Character used for missing values
+      comment: .na
     taxonomy:
       genus: .na                  # Column name of the genus
       species: .na                # Column name of the species
       binomial: .column           # Column name of the binomial name
     traits:
-    - name: .trait_name           # Full name of the trait
+    - name: .trait_name_1         # Full name of the trait
       variable: .col_name         # Column name of the trait
-      type: .type                 # One of 'quantitative' or 'categoric'
-      levels: .levels             # Values for categorical trait
-      units: .na                  # Original unit
       category: .na               # Category of the trait
-      rename_to: .na              # New name of the trait
-      convert_to: .na             # New unit of the trait
-    - name: .trait_name           # Full name of the trait
+      type: quantitative          # One of 'quantitative' or 'categoric'
+      units: .unit                # Original unit
+    - name: .trait_name_2         # Full name of the trait
       variable: .col_name         # Column name of the trait
-      type: .type                 # One of 'quantitative' or 'categoric'
-      levels: .levels             # Values for categorical trait
+      category: .na               # Category of the trait
+      type: categorical           # One of 'quantitative' or 'categorical'
       units: .na                  # Original unit
-      category: .category         # Category of the trait
-      rename_to: .na              # New name of the trait
-      convert_to: .na             # New unit of the trait
+      levels: 
+      - value: .value             # Value 1 for categorical trait
+        description: .descr       # Description of the category
+      - value: .value             # Value 2 for categorical trait
+        description: .descr       # Description of the category
     "
   )
 }
@@ -148,6 +151,8 @@ metadata_as_df <- function() {
     yaml::read_yaml(text = _)
 
   sheets <- list()
+
+  sheets[["status"]] <- data.frame("status" = "draft")
 
   sheets[["dataset"]] <- data.frame(
     "key" = names(metadata$"dataset"),
@@ -165,6 +170,26 @@ metadata_as_df <- function() {
 
   sheets[["traits"]] <- as.data.frame(metadata$"traits"[[1]])
   sheets[["traits"]] <- rbind(sheets[["traits"]], sheets[["traits"]])
+
+  trait_q <- as.data.frame(metadata$"traits"[[1]])
+  trait_q <- data.frame(
+    trait_q,
+    "levels_value" = NA,
+    "levels_description" = NA
+  )
+
+  trait_c <- as.data.frame(metadata$"traits"[[2]])
+  trait_c <- trait_c[, -grep("^levels", colnames(trait_c))]
+
+  trait_c <- data.frame(
+    trait_c,
+    "levels_value" = ".value",
+    "levels_description" = ".descr"
+  )
+
+  trait_c <- rbind(trait_c, trait_c)
+
+  sheets[["traits"]] <- rbind(trait_q, trait_c)
 
   sheets
 }

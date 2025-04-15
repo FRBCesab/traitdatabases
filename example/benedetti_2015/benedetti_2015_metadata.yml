@@ -1,113 +1,105 @@
-metadata:
-  status: complete
+status: complete
 dataset:
-  key: benedetti_2015
-  name: Mediterranean copepods' functional traits
+  id: benedetti_2015
+  title: Mediterranean copepods' functional traits
   description: "Information on the functional traits was gathered for the most commonly-sampled copepod species of the Mediterranean Sea. Our database includes 191 species described by 7 traits encompassing diverse ecological functions: minimal and maximal body length (mm), trophic group (Omnivore/Carnivore/Herbivore/Detritivore), feeding type (Cruise-feeding/Filter-feeding/Ambush-feeding), spawning strategy (Sac-spawner/Free-spawner), diel vertical migration (Non-migrant/Weak-migrant/Strong-migrant) and vertical habitat (prefered depth layer). Using cluster analysis in the functional trait space revealed that Mediterranean copepods can be gathered into groups that have different ecological roles."
   license: CC-BY-3.0
   bibtex: benedetti_2015.bib
+  doi: 10.1093/plankt/fbv096
+  url: .na
   taxon: Copepods
   taxonomic_level: species
   type: static
-  url: https://epic.awi.de/id/eprint/38898/1/Copepod_Functional_Traits_Benedettietal_2015_JPR.xlsx
-  filename: Copepod_Functional_Traits_Benedettietal_2015_JPR.xlsx
-  extension: "xlsx"
+  file_url: https://epic.awi.de/id/eprint/38898/1/Copepod_Functional_Traits_Benedettietal_2015_JPR.xlsx
+  file_name: Copepod_Functional_Traits_Benedettietal_2015_JPR.xlsx
+  file_extension: "xlsx"
   manual_download: no
   long_format: no
+  skip_rows: .na
+  col_separator: .na
   na_value: .na
+  comment: .na
 taxonomy:
+  genus: .na
+  species: .na
   binomial: Species name
 traits:
 - name: Minimum adult cephalothorax length
   variable: Minimal length [A1]
+  category: Body size
   type: quantitative
   units: mm
-  category: Body size
-  rename_to: .na              # New name of the trait
-  convert_to: .na             # New unit of the trait
 - name: Maximum adult cephalothorax length
   variable: Maximal length [A1]
+  category: Body size
   type: quantitative
   units: mm
-  category: Body size
-  rename_to: .na              # New name of the trait
-  convert_to: .na             # New unit of the trait
 - name: Trophic regime
   variable: Trophic Regime
+  category: Diet
   type: categorical
   levels: 
-  - name: Carnivore
+  - value: Carnivore
     description: Carnivore
-  - name: Omnivore-Carnivore
+  - value: Omnivore-Carnivore
     description: Omnivore-Carnivore
-  - name: Omnivore
+  - value: Omnivore
     description: Omnivore
-  - name: Omnivore-Herbivore
+  - value: Omnivore-Herbivore
     description: Omnivore-Herbivore
-  - name: Omnivore-Detritivore
+  - value: Omnivore-Detritivore
     description: Omnivore-Detritivore
-  category: Diet
-  rename_to: .na              # New name of the trait
-  convert_to: .na             # New unit of the trait
 - name: Feeding strategy
   variable: Feeding strategy
+  category: Feeding
   type: categorical
   levels: 
-  - name: Active Ambush
+  - value: Active Ambush
     description: Active ambush feeding
-  - name: Cruise
+  - value: Cruise
     description: Cruise feeding
-  - name: Filter
+  - value: Filter
     description: Filter feeding
-  - name: Mixed
+  - value: Mixed
     description: Mixed feeding
-  category: Feeding
-  rename_to: .na              # New name of the trait
-  convert_to: .na             # New unit of the trait
 - name: "Diel vertical migration behaviour"
   variable: "DVM behaviour"
+  category: Vertical migration
   type: "categorical"
   levels:
-  - name: "No"
+  - value: "No"
     description: Non-migrant
-  - name: "Weak"
+  - value: "Weak"
     description: Weak migrant (DVM occurs within tens of metres)
-  - name: "Strong"
+  - value: "Strong"
     description: Strong migrant (over several hundreds of metres)
-  - name: "Reverse"
+  - value: "Reverse"
     description: Reverse migrant (for species that migrate deeper at night)
-  category: Vertical migration
-  rename_to: .na              # New name of the trait
-  convert_to: .na             # New unit of the trait
 - name: "Spawning strategy"
   variable: "Spawning strategy"
+  category: Egg-spawning strategy
   type: "categorical"
   levels: 
-  - name: Broadcaster
+  - value: Broadcaster
     description: Broadcaster-spawner
-  - name: Sac-spawner
+  - value: Sac-spawner
     description: Sac-spawner
-  category: Egg-spawning strategy
-  rename_to: .na              # New name of the trait
-  convert_to: .na             # New unit of the trait
 - name: "Pelagic layer"
   variable: "Pelagic layer"
+  category: Pelagic layer
   type: "categorical"
   levels: 
-  - name: Epipelagic
+  - value: Epipelagic
     description: Epipelagic
-  - name: Epibathypelagic
+  - value: Epibathypelagic
     description: Epibathypelagic
-  - name: Epimesopelagic
+  - value: Epimesopelagic
     description: Epimesopelagic
-  - name: Mesobathypelagic
+  - value: Mesobathypelagic
     description: Mesobathypelagic
-  - name: Mesopelagic
+  - value: Mesopelagic
     description: Mesopelagic
-  - name: Hyperbenthic
+  - value: Hyperbenthic
     description: Hyperbenthic
-  - name: Bathypelagic
+  - value: Bathypelagic
     description: Bathypelagic
-  category: Pelagic layer
-  rename_to: .na              # New name of the trait
-  convert_to: .na             # New unit of the trait
