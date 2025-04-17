@@ -1,0 +1,62 @@
+status: incomplete                 # One of 'draft' or 'complete'
+dataset:
+  id: midolo_2023          
+  title: Disturbance indicator values for European plants
+  description: "five continuous disturbance indicator values for European vascular plants: disturbance severity, disturbance frequency, mowing frequency, grazing pressure and soil disturbance"
+  license: CC BY 4.0
+  bibtex: midolo_2023.bib
+  doi: 10.1111/geb.13603 
+  url: https://onlinelibrary.wiley.com/doi/10.1111/geb.13603
+  taxon: plants 
+  taxonomic_level: species 
+  type: static       
+  file_url: https://zenodo.org/records/7116957/files/disturbance_indicator_values.csv
+  file_name: disturbance_indicator_values
+  file_extension: csv    
+  manual_download: yes
+  sheet: 1
+  long_format: no             # One of 'yes' or 'no' (traits in columns)
+  skip_rows: .na              # Number of header rows to remove
+  col_separator: ','          # Character used to separate columns
+  na_value: .na               # Character used for missing values
+  comment: only average traits were filled in the metadata, but number of studies and trait standard deviation are also available
+taxonomy:
+  genus: .na                  # Column name of the genus
+  species: .na                # Column name of the species
+  binomial: species
+traits:
+- name: Disturbance severity value for the whole community
+  variable: Disturbance.Severity 
+  category: disturbance
+  type: quantitative 
+  units: .na                
+- name: Disturbance severity value at the herb layer
+  variable: Disturbance.Severity.herblayer
+  category: disturbance
+  type: quantitative
+  units: .na                 
+- name: Disturbance frequency value for the whole community
+  variable: Disturbance.Frequency
+  category: disturbance
+  type: quantitative
+  units: .na
+- name: Disturbance frequency value at the herb layer
+  variable: Disturbance.Frequency.herblayer
+  category: disturbance
+  type: quantitative
+  units: .na
+- name: Mowing frequency value
+  variable: Mowing.Frequency
+  category: disturbance
+  type: quantitative
+  units: .na
+- name: Grazing pressure value
+  variable: Grazing.Pressure
+  category: disturbance
+  type: quantitative
+  units: .na
+- name: Soil disturbance value
+  variable: Soil.Disturbance
+  category: disturbance
+  type: quantitative
+  units: .na                 
