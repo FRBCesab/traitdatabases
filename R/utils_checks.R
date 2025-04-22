@@ -217,3 +217,43 @@ check_format_value <- function(format) {
 
   invisible(NULL)
 }
+
+
+#' Check if a YAML file (map metadata) exists
+#'
+#' @noRd
+
+check_yaml_file <- function(path) {
+  check_character_arg(path)
+
+  if (!file.exists(path)) {
+    stop(
+      "The YAML file '",
+      path,
+      "' doesn't exist",
+      call. = FALSE
+    )
+  }
+
+  invisible(NULL)
+}
+
+
+#' Check if a key exists in a YAML file (map metadata)
+#'
+#' @noRd
+
+check_key_in_yaml <- function(liste, key) {
+  check_character_arg(key)
+
+  if (!(key %in% names(liste))) {
+    stop(
+      "No key ",
+      deparse(substitute(key)),
+      " found in the YAML file",
+      call. = FALSE
+    )
+  }
+
+  invisible(NULL)
+}
