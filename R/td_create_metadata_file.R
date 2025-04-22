@@ -96,7 +96,7 @@ td_create_metadata_file <- function(
 metadata_as_yaml <- function() {
   glue::glue(
     "
-    status: draft                 # One of 'draft' or 'complete'
+    status: draft                 # One of 'draft', 'incomplete' or 'complete'
     dataset:
       id: .dataset_id             # Dataset identifier
       title: .dataset_title       # Dataset title
