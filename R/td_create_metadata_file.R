@@ -117,11 +117,11 @@ metadata_as_yaml <- function() {
       skip_rows: .na              # Number of header rows to remove
       col_separator: ','          # Character used to separate columns
       na_value: .na               # Character used for missing values
+      taxonomy:
+        genus: .na                # Column name of the genus
+        species: .na              # Column name of the species
+        binomial: .column         # Column name of the binomial name
       comment: .na
-    taxonomy:
-      genus: .na                  # Column name of the genus
-      species: .na                # Column name of the species
-      binomial: .column           # Column name of the binomial name
     traits:
     - name: .trait_name_1         # Full name of the trait
       variable: .col_name         # Column name of the trait
@@ -161,13 +161,6 @@ metadata_as_df <- function() {
   )
 
   rownames(sheets[["dataset"]]) <- NULL
-
-  sheets[["taxonomy"]] <- data.frame(
-    "key" = names(metadata$"taxonomy"),
-    "value" = unlist(metadata$"taxonomy")
-  )
-
-  rownames(sheets[["taxonomy"]]) <- NULL
 
   sheets[["traits"]] <- as.data.frame(metadata$"traits"[[1]])
   sheets[["traits"]] <- rbind(sheets[["traits"]], sheets[["traits"]])
