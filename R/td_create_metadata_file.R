@@ -123,13 +123,13 @@ metadata_as_yaml <- function() {
         binomial: .column         # Column name of the binomial name
       comment: .na
     traits:
-    - name: .trait_name_1         # Full name of the trait
-      variable: .col_name         # Column name of the trait
+    - variable: .col_name_1       # Column name of the trait
+      name: .trait_name           # Full name of the trait
       category: .na               # Category of the trait
       type: quantitative          # One of 'quantitative' or 'categoric'
       units: .unit                # Original unit
-    - name: .trait_name_2         # Full name of the trait
-      variable: .col_name         # Column name of the trait
+    - variable: .col_name_2       # Column name of the trait
+      name: .trait_name           # Full name of the trait
       category: .na               # Category of the trait
       type: categorical           # One of 'quantitative' or 'categorical'
       units: .na                  # Original unit
@@ -156,11 +156,13 @@ metadata_as_df <- function() {
   sheets[["status"]] <- data.frame("status" = "draft")
 
   sheets[["dataset"]] <- data.frame(
-    "key" = names(metadata$"dataset"),
+    "key" = names(unlist(metadata$"dataset")), # to handle sublevel taxonomy
     "value" = unlist(metadata$"dataset")
   )
 
   rownames(sheets[["dataset"]]) <- NULL
+  # replace '.' by '_' for spelling harmonization
+  sheets[["dataset"]]$key <- gsub("\\.", "_", sheets[["dataset"]]$key)
 
   sheets[["traits"]] <- as.data.frame(metadata$"traits"[[1]])
   sheets[["traits"]] <- rbind(sheets[["traits"]], sheets[["traits"]])
