@@ -21,3 +21,4 @@ README.html
 inst/doc
 test_*.R
 example/raw-data
+/.quarto/
