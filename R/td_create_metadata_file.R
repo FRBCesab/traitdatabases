@@ -16,7 +16,7 @@
 #' @param format a `character` of length 1. One of `xlsx` or `yaml`.
 #'   Default is `yaml`.
 #'
-#' @param overwite a `logical` of length 1. If `TRUE` overwrites the metadata
+#' @param overwrite a `logical` of length 1. If `TRUE` overwrites the metadata
 #'   template file.
 #'   Default is `FALSE`.
 #'

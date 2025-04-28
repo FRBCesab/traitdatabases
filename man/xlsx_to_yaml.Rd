@@ -17,7 +17,7 @@ Default is the current directory.}
 
 \item{out_suffix}{a \code{character} of length 1. The suffix to be added to the output file.}
 
-\item{overwite}{a \code{logical} of length 1. If \code{TRUE} overwrites the metadata
+\item{overwrite}{a \code{logical} of length 1. If \code{TRUE} overwrites the metadata
 template file. Default is \code{FALSE}.}
 }
 \value{

@@ -18,7 +18,7 @@ Default is the current directory.}
 \item{format}{a \code{character} of length 1. One of \code{xlsx} or \code{yaml}.
 Default is \code{yaml}.}
 
-\item{overwite}{a \code{logical} of length 1. If \code{TRUE} overwrites the metadata
+\item{overwrite}{a \code{logical} of length 1. If \code{TRUE} overwrites the metadata
 template file.
 Default is \code{FALSE}.}
 }
