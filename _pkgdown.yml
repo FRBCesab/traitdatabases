@@ -1,0 +1,6 @@
+url: https://frbcesab.github.io/traitdatabases
+
+template:
+  bootstrap: 5
+  bslib:
+    primary: "#2b4370"
