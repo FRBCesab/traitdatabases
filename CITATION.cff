@@ -1,0 +1,102 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "traitdatabases" in publications use:'
+type: software
+license: GPL-2.0-or-later
+title: 'traitdatabases: Trait Databases Compilation'
+version: 0.0.0.9000
+abstract: A paragraph providing a full description of the project (on several lines...)
+authors:
+- family-names: Casajus
+  given-names: Nicolas
+  email: rdev.nc@gmail.com
+  orcid: https://orcid.org/0000-0002-5537-5294
+repository-code: https://github.com/frbcesab/traitdatabases
+url: https://github.com/frbcesab/traitdatabases
+contact:
+- family-names: Casajus
+  given-names: Nicolas
+  email: rdev.nc@gmail.com
+  orcid: https://orcid.org/0000-0002-5537-5294
+references:
+- type: software
+  title: 'R: A Language and Environment for Statistical Computing'
+  notes: Depends
+  url: https://www.R-project.org/
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+  version: '>= 4.1.0'
+- type: software
+  title: glue
+  abstract: 'glue: Interpreted String Literals'
+  notes: Imports
+  url: https://glue.tidyverse.org/
+  repository: https://CRAN.R-project.org/package=glue
+  authors:
+  - family-names: Hester
+    given-names: Jim
+    orcid: https://orcid.org/0000-0002-2739-7082
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@posit.co
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2025'
+  doi: 10.32614/CRAN.package.glue
+- type: software
+  title: writexl
+  abstract: 'writexl: Export Data Frames to Excel ''xlsx'' Format'
+  notes: Imports
+  url: https://ropensci.r-universe.dev/writexl
+  repository: https://CRAN.R-project.org/package=writexl
+  authors:
+  - family-names: Ooms
+    given-names: Jeroen
+    email: jeroenooms@gmail.com
+    orcid: https://orcid.org/0000-0002-4035-0289
+  year: '2025'
+  doi: 10.32614/CRAN.package.writexl
+- type: software
+  title: yaml
+  abstract: 'yaml: Methods to Convert R Data to YAML and Back'
+  notes: Imports
+  url: https://github.com/vubiostat/r-yaml/
+  repository: https://CRAN.R-project.org/package=yaml
+  authors:
+  - family-names: Garbett
+    given-names: Shawn P
+  - family-names: Stephens
+    given-names: Jeremy
+  - family-names: Simonov
+    given-names: Kirill
+  - family-names: Xie
+    given-names: Yihui
+  - family-names: Dong
+    given-names: Zhuoer
+  - family-names: Wickham
+    given-names: Hadley
+  - family-names: Horner
+    given-names: Jeffrey
+  - name: reikoch
+  - family-names: Beasley
+    given-names: Will
+  - family-names: O'Connor
+    given-names: Brendan
+  - family-names: Warnes
+    given-names: Gregory R.
+  - family-names: Quinn
+    given-names: Michael
+  - family-names: Kamvar
+    given-names: Zhian N.
+  - family-names: Gao
+    given-names: Charlie
+  year: '2025'
+  doi: 10.32614/CRAN.package.yaml
+

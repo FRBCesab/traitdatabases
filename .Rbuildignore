@@ -2,3 +2,6 @@
 ^air\\.toml$
 ^\\.here$
 ^example$
+^CITATION\.cff$
+^codemeta\.json$
+^\.github$
