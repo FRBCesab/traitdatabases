@@ -25,5 +25,7 @@ Imports:
     writexl,
     yaml
 Suggests: 
-    testthat (>= 3.0.0)
+    fs,
+    testthat (>= 3.0.0),
+    withr
 Config/testthat/edition: 3

@@ -5,45 +5,45 @@
 check_character_arg <- function(string) {
   if (missing(string)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(string)),
-      " is required",
+      "' is required",
       call. = FALSE
     )
   }
 
   if (is.null(string)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(string)),
-      " is required",
+      "' is required",
       call. = FALSE
     )
   }
 
   if (!is.character(string)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(string)),
-      " must be a character",
+      "' must be a character",
       call. = FALSE
     )
   }
 
   if (length(string) != 1) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(string)),
-      " must be of length 1",
+      "' must be of length 1",
       call. = FALSE
     )
   }
 
   if (is.na(string)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(string)),
-      " cannot be NA",
+      "' cannot be NA",
       call. = FALSE
     )
   }
@@ -59,45 +59,45 @@ check_character_arg <- function(string) {
 check_numeric_arg <- function(number) {
   if (missing(number)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(number)),
-      " is required",
+      "' is required",
       call. = FALSE
     )
   }
 
   if (is.null(number)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(number)),
-      " is required",
+      "' is required",
       call. = FALSE
     )
   }
 
   if (!is.numeric(number)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(number)),
-      " must be a numeric",
+      "' must be a numeric",
       call. = FALSE
     )
   }
 
   if (length(number) != 1) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(number)),
-      " must be of length 1",
+      "' must be of length 1",
       call. = FALSE
     )
   }
 
   if (is.na(number)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(number)),
-      " cannot be NA",
+      "' cannot be NA",
       call. = FALSE
     )
   }
@@ -113,45 +113,45 @@ check_numeric_arg <- function(number) {
 check_logical_arg <- function(boolean) {
   if (missing(boolean)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(boolean)),
-      " is required",
+      "' is required",
       call. = FALSE
     )
   }
 
   if (is.null(boolean)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(boolean)),
-      " is required",
+      "' is required",
       call. = FALSE
     )
   }
 
   if (!is.logical(boolean)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(boolean)),
-      " must be a logical",
+      "' must be a logical",
       call. = FALSE
     )
   }
 
   if (length(boolean) != 1) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(boolean)),
-      " must be of length 1",
+      "' must be of length 1",
       call. = FALSE
     )
   }
 
   if (is.na(boolean)) {
     stop(
-      "Argument ",
+      "Argument '",
       deparse(substitute(boolean)),
-      " cannot be NA",
+      "' cannot be NA",
       call. = FALSE
     )
   }
@@ -165,14 +165,11 @@ check_logical_arg <- function(boolean) {
 #' @noRd
 
 check_nonascii_char <- function(string) {
-  check_character_arg(string)
-
   if (length(grep("[^ -~]", string)) > 0) {
     stop(
-      "The argument ",
+      "The argument '",
       deparse(substitute(string)),
-      " should not contain non ",
-      "ASCII characters",
+      "' should not contain non ASCII characters",
       call. = FALSE
     )
   }
@@ -186,7 +183,6 @@ check_nonascii_char <- function(string) {
 #' @noRd
 
 check_path_exists <- function(path) {
-  check_character_arg(path)
   if (!dir.exists(path)) {
     stop(
       "The path '",
@@ -205,12 +201,11 @@ check_path_exists <- function(path) {
 #' @noRd
 
 check_format_value <- function(format) {
-  check_character_arg(format)
   if (!(format %in% c("xlsx", "yaml"))) {
     stop(
-      "The argument ",
+      "The argument '",
       deparse(substitute(format)),
-      " should be one of 'xlsx' and 'yaml'",
+      "' should be one of 'xlsx' and 'yaml'",
       call. = FALSE
     )
   }
@@ -219,18 +214,25 @@ check_format_value <- function(format) {
 }
 
 
-#' Check if a YAML file (map metadata) exists
+#' Check if is a named list
 #'
 #' @noRd
 
-check_yaml_file <- function(path) {
-  check_character_arg(path)
-
-  if (!file.exists(path)) {
+check_named_list <- function(x) {
+  if (!is.list(x)) {
     stop(
-      "The YAML file '",
-      path,
-      "' doesn't exist",
+      "The argument '",
+      deparse(substitute(x)),
+      "' must be a list",
+      call. = FALSE
+    )
+  }
+
+  if (is.null(names(x))) {
+    stop(
+      "The argument '",
+      deparse(substitute(x)),
+      "' must be a named list",
       call. = FALSE
     )
   }
@@ -239,18 +241,36 @@ check_yaml_file <- function(path) {
 }
 
 
-#' Check if a key exists in a YAML file (map metadata)
+# #' Check if a YAML file (map metadata) exists
+# #'
+# #' @noRd
+
+# check_yaml_file <- function(path) {
+#   if (!file.exists(path)) {
+#     stop(
+#       "The file '",
+#       path,
+#       "' doesn't exist",
+#       call. = FALSE
+#     )
+#   }
+
+#   invisible(NULL)
+# }
+
+#' Check if a key exists in a YAML file (named list)
 #'
 #' @noRd
 
-check_key_in_yaml <- function(liste, key) {
+check_key_in_yaml <- function(metadata, key) {
+  check_named_list(metadata)
   check_character_arg(key)
 
-  if (!(key %in% names(liste))) {
+  if (!(key %in% names(metadata))) {
     stop(
-      "No key ",
-      deparse(substitute(key)),
-      " found in the YAML file",
+      "No key '",
+      key,
+      "' found in the YAML file",
       call. = FALSE
     )
   }
