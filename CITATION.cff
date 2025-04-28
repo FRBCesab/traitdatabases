@@ -51,6 +51,33 @@ references:
   year: '2025'
   doi: 10.32614/CRAN.package.glue
 - type: software
+  title: readxl
+  abstract: 'readxl: Read Excel Files'
+  notes: Imports
+  url: https://readxl.tidyverse.org
+  repository: https://CRAN.R-project.org/package=readxl
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+    orcid: https://orcid.org/0000-0003-4757-117X
+  - family-names: Bryan
+    given-names: Jennifer
+    email: jenny@posit.co
+    orcid: https://orcid.org/0000-0002-6983-2759
+  year: '2025'
+  doi: 10.32614/CRAN.package.readxl
+- type: software
+  title: utils
+  abstract: 'R: A Language and Environment for Statistical Computing'
+  notes: Imports
+  authors:
+  - name: R Core Team
+  institution:
+    name: R Foundation for Statistical Computing
+    address: Vienna, Austria
+  year: '2025'
+- type: software
   title: writexl
   abstract: 'writexl: Export Data Frames to Excel ''xlsx'' Format'
   notes: Imports
@@ -99,4 +126,17 @@ references:
     given-names: Charlie
   year: '2025'
   doi: 10.32614/CRAN.package.yaml
+- type: software
+  title: testthat
+  abstract: 'testthat: Unit Testing for R'
+  notes: Suggests
+  url: https://testthat.r-lib.org
+  repository: https://CRAN.R-project.org/package=testthat
+  authors:
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@posit.co
+  year: '2025'
+  doi: 10.32614/CRAN.package.testthat
+  version: '>= 3.0.0'
 
