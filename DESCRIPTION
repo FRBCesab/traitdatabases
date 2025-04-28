@@ -16,8 +16,14 @@ License: GPL (>= 2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Depends: R (>= 4.1.0)
+Depends: 
+    R (>= 4.1.0)
 Imports: 
     glue,
+    readxl,
+    utils,
     writexl,
     yaml
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
