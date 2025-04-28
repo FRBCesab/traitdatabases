@@ -1,7 +1,8 @@
 ^LICENSE\.md$
-^air\\.toml$
-^\\.here$
+^air\.toml$
+^\.here$
 ^example$
 ^CITATION\.cff$
 ^codemeta\.json$
 ^\.github$
+^_pkgdown\.yml$
