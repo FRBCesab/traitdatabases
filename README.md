@@ -9,12 +9,12 @@
 ![Lifecycle
 Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)
 [![R CMD
-Check](https://github.com/FRBCesab/forcis/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FRBCesab/forcis/actions/workflows/R-CMD-check.yaml)
+Check](https://github.com/FRBCesab/traitdatabases/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FRBCesab/traitdatabases/actions/workflows/R-CMD-check.yaml)
 [![Website
-deployment](https://github.com/FRBCesab/forcis/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/FRBCesab/forcis/actions/workflows/pkgdown.yaml)
-[![codecov](https://codecov.io/gh/frbcesab/forcis/branch/master/graph/badge.svg)](https://codecov.io/gh/frbcesab/forcis)
+deployment](https://github.com/FRBCesab/traitdatabases/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/FRBCesab/traitdatabases/actions/workflows/pkgdown.yaml)
+[![codecov](https://codecov.io/gh/frbcesab/traitdatabases/branch/master/graph/badge.svg)](https://codecov.io/gh/frbcesab/traitdatabases)
 [![CRAN
-status](https://www.r-pkg.org/badges/version/forcis)](https://CRAN.R-project.org/package=forcis)
+status](https://www.r-pkg.org/badges/version/traitdatabases)](https://CRAN.R-project.org/package=traitdatabases)
 [![License: GPL (\>=
 2)](https://img.shields.io/badge/License-GPL%20%28%3E%3D%202%29-blue.svg)](https://choosealicense.com/licenses/gpl-2.0/)
 <!-- badges: end -->
