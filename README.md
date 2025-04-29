@@ -12,7 +12,7 @@ Experimental](https://img.shields.io/badge/Lifecycle-Experimental-339999)
 Check](https://github.com/FRBCesab/traitdatabases/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FRBCesab/traitdatabases/actions/workflows/R-CMD-check.yaml)
 [![Website
 deployment](https://github.com/FRBCesab/traitdatabases/actions/workflows/pkgdown.yaml/badge.svg)](https://github.com/FRBCesab/traitdatabases/actions/workflows/pkgdown.yaml)
-[![codecov](https://codecov.io/gh/frbcesab/traitdatabases/branch/master/graph/badge.svg)](https://codecov.io/gh/frbcesab/traitdatabases)
+[![codecov](https://codecov.io/gh/frbcesab/traitdatabases/branch/main/graph/badge.svg)](https://codecov.io/gh/frbcesab/traitdatabases)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/traitdatabases)](https://CRAN.R-project.org/package=traitdatabases)
 [![License: GPL (\>=
