@@ -61,9 +61,10 @@ td_create_metadata_file <- function(
       recursive = TRUE
     )
 
+    metadata <- read_yaml_template()
+
     if (format == "yaml") {
-      metadata <- metadata_as_yaml() |>
-        gsub("\\.dataset_key", name, x = _)
+      metadata <- gsub("\\.dataset_key", name, x = metadata)
 
       cat(metadata, file = filename, append = FALSE)
     } else {
@@ -108,8 +109,7 @@ read_yaml_template <- function() {
 #' @noRd
 
 metadata_as_df <- function() {
-  metadata <- metadata_as_yaml() |>
-    yaml::read_yaml(text = _)
+  metadata <- read_yaml_template()
 
   sheets <- list()
 
