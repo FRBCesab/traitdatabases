@@ -66,28 +66,35 @@ yaml_to_df <- function(metadata) {
 
   rownames(sheets[["dataset"]]) <- NULL
 
-  sheets[["traits"]] <- as.data.frame(metadata$"traits"[[1]])
-  sheets[["traits"]] <- rbind(sheets[["traits"]], sheets[["traits"]])
+  traits <- lapply(metadata$"traits", function(x) {
+    traits <- as.data.frame(t(unlist(x)))
+    if (traits$"type" == "categorical") {
+      check_key_in_yaml(x, "levels")
+      invisible(
+        lapply(x$"levels", function(y) check_key_in_yaml(y, "value"))
+      )
+      invisible(
+        lapply(x$"levels", function(y) check_key_in_yaml(y, "description"))
+      )
 
-  trait_q <- as.data.frame(metadata$"traits"[[1]])
-  trait_q <- data.frame(
-    trait_q,
-    "levels_value" = NA,
-    "levels_description" = NA
-  )
+      level_val_cols <- grep("^levels.value", colnames(traits))
+      level_descr_cols <- grep("^levels.description", colnames(traits))
 
-  trait_c <- as.data.frame(metadata$"traits"[[2]])
-  trait_c <- trait_c[, -grep("^levels", colnames(trait_c))]
+      categories <- data.frame(
+        "name" = traits[["name"]],
+        "levels_value" = unlist(traits[, level_val_cols]),
+        "levels_description" = unlist(traits[, level_descr_cols])
+      )
 
-  trait_c <- data.frame(
-    trait_c,
-    "levels_value" = ".value",
-    "levels_description" = ".descr"
-  )
+      traits <- traits[, -c(level_val_cols, level_descr_cols)]
 
-  trait_c <- rbind(trait_c, trait_c)
+      traits <- merge(traits, categories, by = "name")
+    }
 
-  sheets[["traits"]] <- rbind(trait_q, trait_c)
+    traits
+  })
+
+  sheets[["traits"]] <- do.call(plyr::rbind.fill, traits)
 
   sheets
 }
