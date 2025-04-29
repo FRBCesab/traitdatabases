@@ -43,12 +43,7 @@ td_create_metadata_file <- function(
   check_format_value(format)
   check_logical_arg(overwrite)
 
-  name <- name |>
-    tolower() |>
-    trimws() |>
-    gsub("\\s+", "_", x = _) |>
-    gsub("[[:punct:]]", "_", x = _) |>
-    gsub("_+", "_", x = _)
+  name <- clean_database_name(name)
 
   dir_path <- file.path(path, name)
   file_ext <- ifelse(format == "yaml", ".yml", ".xlsx")
@@ -68,7 +63,7 @@ td_create_metadata_file <- function(
 
       cat(metadata, file = filename, append = FALSE)
     } else {
-      metadata <- metadata_as_df()
+      metadata <- yaml_to_df(metadata)
       metadata[["dataset"]]$"value" <- gsub(
         "\\.dataset_key",
         name,

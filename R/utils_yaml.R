@@ -54,12 +54,14 @@ read_yaml_template <- function() {
 #'
 #' @noRd
 
-metadata_as_df <- function() {
-  metadata <- read_yaml_template()
+yaml_to_df <- function(metadata) {
+  check_key_in_yaml(metadata, "status")
+  check_key_in_yaml(metadata, "dataset")
+  check_key_in_yaml(metadata, "traits")
 
   sheets <- list()
 
-  sheets[["status"]] <- data.frame("status" = "draft")
+  sheets[["status"]] <- data.frame("status" = metadata$"status")
 
   sheets[["dataset"]] <- data.frame(
     "key" = names(unlist(metadata$"dataset")), # to handle sublevel taxonomy
@@ -67,31 +69,84 @@ metadata_as_df <- function() {
   )
 
   rownames(sheets[["dataset"]]) <- NULL
-  # replace '.' by '_' for spelling harmonization
-  sheets[["dataset"]]$key <- gsub("\\.", "_", sheets[["dataset"]]$key)
 
-  sheets[["traits"]] <- as.data.frame(metadata$"traits"[[1]])
-  sheets[["traits"]] <- rbind(sheets[["traits"]], sheets[["traits"]])
+  traits <- lapply(metadata$"traits", function(x) {
+    check_key_in_yaml(x, "name")
+    check_key_in_yaml(x, "variable")
+    check_key_in_yaml(x, "category")
+    check_key_in_yaml(x, "type")
 
-  trait_q <- as.data.frame(metadata$"traits"[[1]])
-  trait_q <- data.frame(
-    trait_q,
-    "levels_value" = NA,
-    "levels_description" = NA
+    traits <- as.data.frame(t(unlist(x)))
+
+    if (traits$"type" == "categorical") {
+      check_key_in_yaml(x, "levels")
+
+      invisible(
+        lapply(x$"levels", function(y) check_key_in_yaml(y, "value"))
+      )
+
+      invisible(
+        lapply(x$"levels", function(y) check_key_in_yaml(y, "description"))
+      )
+
+      level_val_cols <- grep("^levels.value", colnames(traits))
+      level_descr_cols <- grep("^levels.description", colnames(traits))
+
+      categories <- data.frame(
+        "name" = traits[["name"]],
+        "levels.value" = unlist(traits[, level_val_cols]),
+        "levels.description" = unlist(traits[, level_descr_cols])
+      )
+
+      traits <- traits[, -c(level_val_cols, level_descr_cols)]
+
+      traits <- merge(traits, categories, by = "name")
+    }
+
+    traits
+  })
+
+  sheets[["traits"]] <- do.call(plyr::rbind.fill, traits)
+
+  if (!("units" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"units" <- NA
+  }
+
+  if (!("levels.value" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"levels.value" <- NA
+  }
+
+  if (!("levels.description" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"levels.description" <- NA
+  }
+
+  col_order <- c(
+    "name",
+    "variable",
+    "category",
+    "type",
+    "units",
+    "levels.value",
+    "levels.description"
   )
 
-  trait_c <- as.data.frame(metadata$"traits"[[2]])
-  trait_c <- trait_c[, -grep("^levels", colnames(trait_c))]
-
-  trait_c <- data.frame(
-    trait_c,
-    "levels_value" = ".value",
-    "levels_description" = ".descr"
-  )
-
-  trait_c <- rbind(trait_c, trait_c)
-
-  sheets[["traits"]] <- rbind(trait_q, trait_c)
+  sheets[["traits"]] <- sheets[["traits"]][, col_order]
 
   sheets
+}
+
+
+#' Clean database name
+#'
+#' @noRd
+
+clean_database_name <- function(name) {
+  name |>
+    tolower() |>
+    trimws() |>
+    gsub("\\s+", "_", x = _) |>
+    gsub("[[:punct:]]", "_", x = _) |>
+    gsub("_+", "_", x = _) |>
+    gsub("^_", "", x = _) |>
+    gsub("_$", "", x = _)
 }
