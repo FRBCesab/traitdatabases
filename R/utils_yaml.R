@@ -55,6 +55,10 @@ read_yaml_template <- function() {
 #' @noRd
 
 yaml_to_df <- function(metadata) {
+  check_key_in_yaml(metadata, "status")
+  check_key_in_yaml(metadata, "dataset")
+  check_key_in_yaml(metadata, "traits")
+
   sheets <- list()
 
   sheets[["status"]] <- data.frame("status" = metadata$"status")
