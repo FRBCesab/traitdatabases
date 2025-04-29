@@ -90,8 +90,8 @@ yaml_to_df <- function(metadata) {
 
       categories <- data.frame(
         "name" = traits[["name"]],
-        "levels_value" = unlist(traits[, level_val_cols]),
-        "levels_description" = unlist(traits[, level_descr_cols])
+        "levels.value" = unlist(traits[, level_val_cols]),
+        "levels.description" = unlist(traits[, level_descr_cols])
       )
 
       traits <- traits[, -c(level_val_cols, level_descr_cols)]
@@ -108,12 +108,12 @@ yaml_to_df <- function(metadata) {
     sheets[["traits"]]$"units" <- NA
   }
 
-  if (!("levels_value" %in% colnames(sheets[["traits"]]))) {
-    sheets[["traits"]]$"levels_value" <- NA
+  if (!("levels.value" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"levels.value" <- NA
   }
 
-  if (!("levels_description" %in% colnames(sheets[["traits"]]))) {
-    sheets[["traits"]]$"levels_description" <- NA
+  if (!("levels.description" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"levels.description" <- NA
   }
 
   col_order <- c(
@@ -122,8 +122,8 @@ yaml_to_df <- function(metadata) {
     "category",
     "type",
     "units",
-    "levels_value",
-    "levels_description"
+    "levels.value",
+    "levels.description"
   )
 
   sheets[["traits"]] <- sheets[["traits"]][, col_order]
