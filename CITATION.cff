@@ -35,21 +35,17 @@ references:
   year: '2025'
   version: '>= 4.1.0'
 - type: software
-  title: glue
-  abstract: 'glue: Interpreted String Literals'
+  title: plyr
+  abstract: 'plyr: Tools for Splitting, Applying and Combining Data'
   notes: Imports
-  url: https://glue.tidyverse.org/
-  repository: https://CRAN.R-project.org/package=glue
+  url: http://had.co.nz/plyr
+  repository: https://CRAN.R-project.org/package=plyr
   authors:
-  - family-names: Hester
-    given-names: Jim
-    orcid: https://orcid.org/0000-0002-2739-7082
-  - family-names: Bryan
-    given-names: Jennifer
-    email: jenny@posit.co
-    orcid: https://orcid.org/0000-0002-6983-2759
+  - family-names: Wickham
+    given-names: Hadley
+    email: hadley@rstudio.com
   year: '2025'
-  doi: 10.32614/CRAN.package.glue
+  doi: 10.32614/CRAN.package.plyr
 - type: software
   title: readxl
   abstract: 'readxl: Read Excel Files'
