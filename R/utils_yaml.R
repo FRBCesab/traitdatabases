@@ -146,5 +146,7 @@ clean_database_name <- function(name) {
     trimws() |>
     gsub("\\s+", "_", x = _) |>
     gsub("[[:punct:]]", "_", x = _) |>
-    gsub("_+", "_", x = _)
+    gsub("_+", "_", x = _) |>
+    gsub("^_", "", x = _) |>
+    gsub("_$", "", x = _)
 }
