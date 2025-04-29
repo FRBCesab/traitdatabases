@@ -54,12 +54,10 @@ read_yaml_template <- function() {
 #'
 #' @noRd
 
-metadata_as_df <- function() {
-  metadata <- read_yaml_template()
-
+yaml_to_df <- function(metadata) {
   sheets <- list()
 
-  sheets[["status"]] <- data.frame("status" = "draft")
+  sheets[["status"]] <- data.frame("status" = metadata$"status")
 
   sheets[["dataset"]] <- data.frame(
     "key" = names(unlist(metadata$"dataset")), # to handle sublevel taxonomy
@@ -67,8 +65,6 @@ metadata_as_df <- function() {
   )
 
   rownames(sheets[["dataset"]]) <- NULL
-  # replace '.' by '_' for spelling harmonization
-  sheets[["dataset"]]$key <- gsub("\\.", "_", sheets[["dataset"]]$key)
 
   sheets[["traits"]] <- as.data.frame(metadata$"traits"[[1]])
   sheets[["traits"]] <- rbind(sheets[["traits"]], sheets[["traits"]])

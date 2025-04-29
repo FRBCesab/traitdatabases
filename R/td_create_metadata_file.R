@@ -68,7 +68,7 @@ td_create_metadata_file <- function(
 
       cat(metadata, file = filename, append = FALSE)
     } else {
-      metadata <- metadata_as_df()
+      metadata <- yaml_to_df(metadata)
       metadata[["dataset"]]$"value" <- gsub(
         "\\.dataset_key",
         name,
