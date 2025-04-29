@@ -67,12 +67,20 @@ yaml_to_df <- function(metadata) {
   rownames(sheets[["dataset"]]) <- NULL
 
   traits <- lapply(metadata$"traits", function(x) {
+    check_key_in_yaml(x, "name")
+    check_key_in_yaml(x, "variable")
+    check_key_in_yaml(x, "category")
+    check_key_in_yaml(x, "type")
+
     traits <- as.data.frame(t(unlist(x)))
+
     if (traits$"type" == "categorical") {
       check_key_in_yaml(x, "levels")
+
       invisible(
         lapply(x$"levels", function(y) check_key_in_yaml(y, "value"))
       )
+
       invisible(
         lapply(x$"levels", function(y) check_key_in_yaml(y, "description"))
       )
@@ -95,6 +103,30 @@ yaml_to_df <- function(metadata) {
   })
 
   sheets[["traits"]] <- do.call(plyr::rbind.fill, traits)
+
+  if (!("units" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"units" <- NA
+  }
+
+  if (!("levels_value" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"levels_value" <- NA
+  }
+
+  if (!("levels_description" %in% colnames(sheets[["traits"]]))) {
+    sheets[["traits"]]$"levels_description" <- NA
+  }
+
+  col_order <- c(
+    "name",
+    "variable",
+    "category",
+    "type",
+    "units",
+    "levels_value",
+    "levels_description"
+  )
+
+  sheets[["traits"]] <- sheets[["traits"]][, col_order]
 
   sheets
 }
