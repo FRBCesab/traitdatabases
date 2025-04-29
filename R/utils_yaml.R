@@ -134,3 +134,17 @@ yaml_to_df <- function(metadata) {
 
   sheets
 }
+
+
+#' Clean database name
+#'
+#' @noRd
+
+clean_database_name <- function(name) {
+  name |>
+    tolower() |>
+    trimws() |>
+    gsub("\\s+", "_", x = _) |>
+    gsub("[[:punct:]]", "_", x = _) |>
+    gsub("_+", "_", x = _)
+}

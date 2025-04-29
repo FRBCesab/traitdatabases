@@ -43,12 +43,7 @@ td_create_metadata_file <- function(
   check_format_value(format)
   check_logical_arg(overwrite)
 
-  name <- name |>
-    tolower() |>
-    trimws() |>
-    gsub("\\s+", "_", x = _) |>
-    gsub("[[:punct:]]", "_", x = _) |>
-    gsub("_+", "_", x = _)
+  name <- clean_database_name(name)
 
   dir_path <- file.path(path, name)
   file_ext <- ifelse(format == "yaml", ".yml", ".xlsx")
