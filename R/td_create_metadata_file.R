@@ -59,15 +59,16 @@ td_create_metadata_file <- function(
     metadata <- read_yaml_template()
 
     if (format == "yaml") {
-      metadata <- gsub("\\.dataset_key", name, x = metadata)
+      metadata[["dataset"]][["id"]] <- name
+      metadata <- yaml::as.yaml(metadata)
 
       cat(metadata, file = filename, append = FALSE)
     } else {
       metadata <- yaml_to_df(metadata)
-      metadata[["dataset"]]$"value" <- gsub(
-        "\\.dataset_key",
+      metadata[["dataset"]][["value"]] <- gsub(
+        "\\.dataset_id",
         name,
-        metadata[["dataset"]]$"value"
+        metadata[["dataset"]][["value"]]
       )
 
       writexl::write_xlsx(x = metadata, path = filename)
