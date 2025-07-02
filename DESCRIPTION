@@ -20,12 +20,12 @@ Depends:
     R (>= 4.1.0)
 Imports: 
     plyr,
-    readxl,
     utils,
     writexl,
     yaml
 Suggests: 
     fs,
+    readxl,
     testthat (>= 3.0.0),
     withr
 Config/testthat/edition: 3

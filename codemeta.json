@@ -13,7 +13,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
+  "runtimePlatform": "R version 4.5.1 (2025-06-13)",
   "author": [
     {
       "@type": "Person",
@@ -56,6 +56,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "readxl",
+      "name": "readxl",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=readxl"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "testthat",
       "name": "testthat",
       "version": ">= 3.0.0",
@@ -89,34 +101,22 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "glue",
-      "name": "glue",
+      "identifier": "plyr",
+      "name": "plyr",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=glue"
+      "sameAs": "https://CRAN.R-project.org/package=plyr"
     },
     "3": {
-      "@type": "SoftwareApplication",
-      "identifier": "readxl",
-      "name": "readxl",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=readxl"
-    },
-    "4": {
       "@type": "SoftwareApplication",
       "identifier": "utils",
       "name": "utils"
     },
-    "5": {
+    "4": {
       "@type": "SoftwareApplication",
       "identifier": "writexl",
       "name": "writexl",
@@ -128,7 +128,7 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=writexl"
     },
-    "6": {
+    "5": {
       "@type": "SoftwareApplication",
       "identifier": "yaml",
       "name": "yaml",
@@ -142,6 +142,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "36.286KB",
-  "readme": "https://github.com/FRBCesab/traitdatabases/blob/main/README.md"
+  "fileSize": "181.463KB",
+  "readme": "https://github.com/FRBCesab/traitdatabases/blob/main/README.md",
+  "contIntegration": ["https://github.com/FRBCesab/traitdatabases/actions/workflows/R-CMD-check.yaml", "https://github.com/FRBCesab/traitdatabases/actions/workflows/pkgdown.yaml", "https://codecov.io/gh/frbcesab/traitdatabases"]
 }
