@@ -136,6 +136,144 @@ yaml_to_df <- function(metadata) {
 }
 
 
+#' Convert list of data.frame to YAML
+#'
+#' @noRd
+
+df_to_yaml <- function(metadata) {
+  check_key_in_yaml(metadata, "status")
+  check_key_in_yaml(metadata, "dataset")
+  check_key_in_yaml(metadata, "traits")
+
+  yml <- list()
+
+  yml[["status"]] <- metadata[["status"]][1, "status"]
+
+  dataset <- metadata[["dataset"]]
+
+  # Keep key order
+  dataset[["split"]] <- dataset[["key"]] |>
+    strsplit("\\.") |>
+    lapply(function(x) x[1]) |>
+    unlist()
+
+  keys <- dataset[["split"]]
+  keys <- keys[!duplicated(keys)]
+
+  dataset[["key"]] <- lapply(
+    1:nrow(dataset),
+    function(x) {
+      if (dataset[x, "key"] != dataset[x, "split"]) {
+        dataset[x, "key"] <- gsub(
+          paste0(dataset[x, "split"], "\\."),
+          "",
+          dataset[x, "key"]
+        )
+      }
+      dataset[x, "key"]
+    }
+  )
+
+  dataset <- split(dataset[, -3], dataset[["split"]])
+
+  yml[["dataset"]] <- lapply(dataset, function(x) {
+    if (nrow(x) == 1) {
+      y <- x[1, "value"]
+    } else {
+      y <- as.list(x[["value"]])
+      names(y) <- x[["key"]]
+    }
+    y
+  })
+
+  yml[["dataset"]] <- yml[["dataset"]][keys]
+
+  traits <- metadata[["traits"]]
+
+  keys <- colnames(traits)
+  keys <- gsub("\\..*$", "", keys)
+  keys <- keys[!duplicated(keys)]
+
+  traits <- traits |>
+    split(traits[["variable"]]) |>
+    lapply(wide_to_long)
+
+  traits <- lapply(traits, function(trait) {
+    trait[["split"]] <- trait[["key"]] |>
+      strsplit("\\.") |>
+      lapply(function(x) x[1]) |>
+      unlist()
+
+    trait[["key"]] <- lapply(
+      1:nrow(trait),
+      function(x) {
+        if (trait[x, "key"] != trait[x, "split"]) {
+          trait[x, "key"] <- gsub(
+            paste0(trait[x, "split"], "\\."),
+            "",
+            trait[x, "key"]
+          )
+        }
+        trait[x, "key"]
+      }
+    )
+
+    is_cat <- grep("[0-9]", trait[["split"]])
+
+    if (length(is_cat) > 0) {
+      trait[is_cat, "key"] <- gsub("[0-9]", "", trait[is_cat, "key"])
+      trait <- trait[!duplicated(trait[["key"]]), ]
+      # trait[["key"]] <- gsub("[0-9]", "", trait[["key"]])
+      trait[["split"]] <- gsub("[0-9]", "", trait[["split"]])
+    }
+
+    is_cat <- grep("[0-9]", trait[["key"]])
+
+    if (length(is_cat) > 0) {
+      level_data <- unlist(trait[is_cat, "key"])
+      var_names <- gsub("[0-9]", "", level_data)
+      level_id <- lapply(1:length(var_names), function(i) {
+        gsub(var_names[i], "", level_data[i])
+      }) |>
+        unlist() |>
+        as.numeric()
+
+      level_data <- data.frame("key" = var_names, "pos" = level_id)
+      level_data$"key" <- factor(
+        level_data$"key",
+        levels = c("value", "description")
+      )
+      level_data$"key" <- as.numeric(level_data$"key")
+
+      pos <- with(level_data, order(pos, key))
+
+      trait <- rbind(trait[-is_cat, ], trait[is_cat[pos], ])
+      trait[["key"]] <- gsub("[0-9]", "", trait[["key"]])
+    }
+
+    trait <- split(trait, trait[["split"]])
+
+    trait <- lapply(trait, function(x) {
+      if (nrow(x) == 1) {
+        y <- x[1, "value"]
+      } else {
+        y <- as.list(x[["value"]])
+        names(y) <- x[["key"]]
+      }
+      y
+    })
+
+    trait <- trait[keys]
+  })
+
+  names(traits) <- NULL
+
+  yml[["traits"]] <- traits
+
+  yml
+}
+
+
 #' Clean database name
 #'
 #' @noRd
@@ -149,4 +287,22 @@ clean_database_name <- function(name) {
     gsub("_+", "_", x = _) |>
     gsub("^_", "", x = _) |>
     gsub("_$", "", x = _)
+}
+
+
+#' Convert a data.frame from wide to long format
+#'
+#' @noRd
+
+wide_to_long <- function(data) {
+  data <- data |>
+    as.list() |>
+    unlist() |>
+    as.data.frame()
+
+  data <- data.frame("key" = rownames(data), "value" = data[, 1])
+
+  rownames(data) <- NULL
+
+  data
 }

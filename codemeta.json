@@ -56,6 +56,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "readxl",
       "name": "readxl",
       "provider": {
@@ -65,6 +77,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=readxl"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
     },
     {
       "@type": "SoftwareApplication",
@@ -142,7 +166,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "181.463KB",
+  "fileSize": "181.83KB",
   "readme": "https://github.com/FRBCesab/traitdatabases/blob/main/README.md",
   "contIntegration": ["https://github.com/FRBCesab/traitdatabases/actions/workflows/R-CMD-check.yaml", "https://github.com/FRBCesab/traitdatabases/actions/workflows/pkgdown.yaml", "https://codecov.io/gh/frbcesab/traitdatabases"]
 }
