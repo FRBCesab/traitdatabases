@@ -10,14 +10,14 @@
 Source:
 [`DESCRIPTION`](https://github.com/frbcesab/traitdatabases/blob/main/DESCRIPTION)
 
-Casajus N (2025). *traitdatabases: Trait Databases Compilation*. R
+Casajus N (2026). *traitdatabases: Trait Databases Compilation*. R
 package version 0.0.0.9000,
 <https://github.com/frbcesab/traitdatabases>.
 
     @Manual{,
       title = {traitdatabases: Trait Databases Compilation},
       author = {Nicolas Casajus},
-      year = {2025},
+      year = {2026},
       note = {R package version 0.0.0.9000},
       url = {https://github.com/frbcesab/traitdatabases},
     }
