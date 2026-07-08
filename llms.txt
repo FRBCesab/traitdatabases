@@ -24,6 +24,7 @@ You can install the development version from
 [GitHub](https://github.com/) with:
 
 ``` r
+
 ## Install < remotes > package (if not already installed) ----
 if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
@@ -36,6 +37,7 @@ remotes::install_github("frbcesab/traitdatabases")
 Then you can attach the package `traitdatabases`:
 
 ``` r
+
 library("traitdatabases")
 ```
 
